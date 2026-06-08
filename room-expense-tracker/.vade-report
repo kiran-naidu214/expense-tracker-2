@@ -1,0 +1,70 @@
+# Vercel Web Analytics Integration
+
+## Summary
+Successfully installed and configured Vercel Web Analytics for the React + Vite expense tracker application.
+
+## Changes Made
+
+### 1. Package Installation
+- Installed `@vercel/analytics` version 2.0.1
+- Updated `package.json` with the new dependency
+- Updated `package-lock.json` with resolved dependencies
+
+### 2. Code Integration
+**Modified: `src/App.jsx`**
+- Added import statement: `import { Analytics } from '@vercel/analytics/react'`
+- Added `<Analytics />` component at the end of the JSX return statement (inside the root fragment)
+- Placement follows Vercel's official documentation for React/Vite projects
+
+## Implementation Details
+
+### Framework-Specific Configuration
+As per Vercel's official quickstart documentation (https://vercel.com/docs/analytics/quickstart), for React/Vite applications:
+- The Analytics component should be imported from `@vercel/analytics/react`
+- The component should be placed in the main App component
+- No additional configuration is required
+
+### Code Placement Rationale
+The `<Analytics />` component was placed at the end of the root fragment in App.jsx, alongside other global components (Toast, DeleteConfirm). This ensures:
+- Analytics tracking is initialized when the app loads
+- The component doesn't interfere with existing layout structure
+- Consistent placement with other app-wide features
+
+## Verification
+
+### Build Verification ✓
+- Ran `npm run build` - Build completed successfully
+- Output: Bundle size: 436.73 kB (gzipped: 122.14 kB)
+- No build errors or warnings related to the Analytics integration
+
+### Linter Verification ✓
+- Ran `npm run lint` - No new errors introduced by Analytics integration
+- Existing linter errors are pre-existing in the codebase (unrelated to this change)
+- The Analytics import and component usage passes all ESLint checks
+
+## Next Steps for Users
+
+1. **Enable Analytics in Vercel Dashboard**
+   - Navigate to your project in Vercel dashboard
+   - Go to Analytics tab
+   - Click the "Enable" button
+
+2. **Deploy to Production**
+   - Run `vercel deploy` or push changes to trigger automatic deployment
+   - Analytics will automatically start collecting data once deployed
+
+3. **Verify Installation**
+   - After deployment, visit your site
+   - Open browser DevTools > Network tab
+   - Look for requests to analytics endpoints (should see requests being sent)
+
+## Files Modified
+- `package.json` - Added @vercel/analytics dependency
+- `package-lock.json` - Updated with resolved dependencies
+- `src/App.jsx` - Added Analytics import and component
+
+## Technical Notes
+- No breaking changes to existing functionality
+- The Analytics component is lightweight and won't impact app performance
+- Analytics will only collect data in production by default (automatically detects environment)
+- The integration follows React best practices and Vercel's official recommendations

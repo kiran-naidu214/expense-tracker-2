@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import RoomSetup from './components/RoomSetup'
 import Header from './components/Header'
 import TabBar from './components/TabBar'
@@ -247,6 +248,7 @@ export default function App() {
 
       {deleteState && <DeleteConfirm onConfirm={executeDelete} onCancel={cancelDelete} />}
       {toast && <Toast message={toast.msg} type={toast.type} />}
+      <Analytics />
     </>
   )
 }
